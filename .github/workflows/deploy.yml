@@ -1,0 +1,24 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - claude/hello-world-github-actions-ni842
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy to server
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: 91.99.120.72
+        username: root
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd /var/www/hello-world-app
+          git pull origin claude/hello-world-github-actions-ni842
+          npm ci --production
+          pm2 restart hello-world-app || pm2 start ecosystem.config.js
+          pm2 save
