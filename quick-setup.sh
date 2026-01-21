@@ -7,13 +7,6 @@ echo "================================================"
 echo "Hello World App - Quick Server Setup"
 echo "================================================"
 
-# Add GitHub Actions SSH key
-mkdir -p /root/.ssh
-chmod 700 /root/.ssh
-echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIACNW2LpeJcCfc8+n+ZEuEYdD1o7KiJtWEYu6luAxpNk github-actions-deploy" >> /root/.ssh/authorized_keys
-chmod 600 /root/.ssh/authorized_keys
-echo "✓ SSH key configured"
-
 # Update and install dependencies
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -y
@@ -44,10 +37,10 @@ cd /var/www/hello-world-app
 # Clone repository
 if [ -d ".git" ]; then
   echo "Repository already exists, pulling latest changes..."
-  git pull origin claude/hello-world-github-actions-ni842
+  git pull origin claude/hello-world-github-actions-3RoPr
 else
   echo "Cloning repository..."
-  git clone -b claude/hello-world-github-actions-ni842 https://github.com/eduardkolberg/testclaude.git .
+  git clone -b claude/hello-world-github-actions-3RoPr https://github.com/eduardkolberg/testclaude.git .
 fi
 echo "✓ Repository cloned"
 
@@ -101,7 +94,7 @@ echo "================================================"
 echo "✓ Setup complete!"
 echo "================================================"
 echo ""
-echo "Application URL: http://91.99.120.72"
+echo "Application URL: http://116.203.251.113"
 echo ""
 echo "Test locally: curl http://localhost:3000"
 echo "View logs: pm2 logs hello-world-app"
